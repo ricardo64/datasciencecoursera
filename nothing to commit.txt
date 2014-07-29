@@ -1,0 +1,32 @@
+Hello!!
+
+git status FAQ: When I issue the "git status" command, I see the following "Your branch is ahead or origin/master ..." git message:
+
+# On branch master
+# Your branch is ahead of 'origin/master' by 5 commits.
+#
+nothing to commit (working directory clean)
+
+What does this "Your branch is ahead of 'origin/master' by X commits" message mean? I keep committing my changes with "git commit", so this message seems to be in error.
+git status message - Your branch is ahead of 'origin/master' by X commits
+
+These git "Your branch is ahead of origin/master" and "nothing to commit" messages can be misleading, especially to new git users (like myself). The thing to know here is that your branch isn't ahead of the the master -- your branch is the master.
+
+What the git message is saying is that you're ahead of "origin/master", which (for new projects) is usually the branch on the remote git origin server. (You most likely did a "git clone" to get your git repository from the origin server.) So this message is telling you that you've made these changes, and you're now ahead of the origin server, and this message is essentially a reminder to push your changes back to the origin server.
+
+If you're working on a simple project (like I am) you can push your changes back to the origin server with this command:
+
+git push origin master
+
+Git commit is not "cvs commit" or "svn commit"
+
+Frankly, this is something I'm really struggling with regarding Git right now. I'm used to "cvs commit" or "svn commit" committing my changes back to the server, but with Git this is a multi-step step process, as shown here:
+
+# make your changes
+$ git add .
+$ git commit -m 'your message'
+$ git push origin master
+
+If you forget that last step -- which I always do -- you'll see the
+
+"Your branch is ahead of origin/master by X commits" git status message, along with the "nothing to commit" message (again, reminding you to do a "git push").
